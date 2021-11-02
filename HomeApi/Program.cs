@@ -21,6 +21,7 @@ namespace HomeApi
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                })
+                .ConfigureAppConfiguration(builder => builder.AddJsonFile("HomeOptions.json"));
     }
 }

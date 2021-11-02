@@ -22,9 +22,7 @@ namespace HomeApi
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; } = new ConfigurationBuilder()
-            .AddJsonFile("HomeOptions.json")
-            .Build();
+        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)

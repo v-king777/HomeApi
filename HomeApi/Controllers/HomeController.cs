@@ -13,7 +13,7 @@ namespace HomeApi.Controllers
     [Route("[controller]")]
     public class HomeController : ControllerBase
     {
-        private IOptions<HomeOptions> _options;
+        private readonly IOptions<HomeOptions> _options;
 
         public HomeController(IOptions<HomeOptions> options)
         {
@@ -41,9 +41,9 @@ namespace HomeApi.Controllers
             pageResult.Append($"Жилая площадь:             {_options.Value.Area} м2{Environment.NewLine}");
             pageResult.Append($"Материал:                  {_options.Value.Material}{Environment.NewLine}");
             pageResult.Append($"{Environment.NewLine}");
-            //pageResult.Append($"Адрес:                     {_options.Value.Address.Street} " +
-            //                                             $"{_options.Value.Address.House}/" +
-            //                                             $"{_options.Value.Address.Building}{Environment.NewLine}");
+            pageResult.Append($"Адрес:                     {_options.Value.Address.Street} " +
+                                                         $"{_options.Value.Address.House}/" +
+                                                         $"{_options.Value.Address.Building}{Environment.NewLine}");
 
             // Преобразуем результат в строку и выводим, как обычную веб-страницу
             return StatusCode(200, pageResult.ToString());
