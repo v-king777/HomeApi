@@ -1,4 +1,6 @@
+using FluentValidation.AspNetCore;
 using HomeApi.Configuration;
+using HomeApi.Contracts.Validation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,6 +33,9 @@ namespace HomeApi
             // Подключаем автомаппинг
             var assembly = Assembly.GetAssembly(typeof(MappingProfile));
             services.AddAutoMapper(assembly);
+
+            // Подключаем класс-валидатор
+            services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddDeviceRequestValidator>());
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
