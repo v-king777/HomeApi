@@ -11,6 +11,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace HomeApi
@@ -26,6 +27,10 @@ namespace HomeApi
         {
             // Добавляем новый сервис
             services.Configure<HomeOptions>(Configuration);
+
+            // Подключаем автомаппинг
+            var assembly = Assembly.GetAssembly(typeof(MappingProfile));
+            services.AddAutoMapper(assembly);
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
